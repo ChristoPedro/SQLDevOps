@@ -16,14 +16,14 @@ wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2021.04.15'
 ,p_release=>'21.1.6'
 ,p_default_workspace_id=>10053593125396169
-,p_default_application_id=>102
+,p_default_application_id=>101
 ,p_default_id_offset=>0
 ,p_default_owner=>'APEX'
 );
 end;
 /
  
-prompt APPLICATION 102 - Demo
+prompt APPLICATION 101 - Demo
 --
 -- Application Export:
 --   Application:     102
