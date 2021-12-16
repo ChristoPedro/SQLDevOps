@@ -79,7 +79,7 @@ begin
 wwv_flow_api.create_flow(
  p_id=>wwv_flow.g_flow_id
 ,p_owner=>nvl(wwv_flow_application_install.get_schema,'APEX')
-,p_name=>nvl(wwv_flow_application_install.get_application_name,'Campos - Demo')
+,p_name=>nvl(wwv_flow_application_install.get_application_name,'Campos - APP')
 ,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'DEMO')
 ,p_page_view_logging=>'YES'
 ,p_page_protection_enabled_y_n=>'Y'
