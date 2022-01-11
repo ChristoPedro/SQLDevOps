@@ -5,9 +5,8 @@ shell: bash
 env:
   variables:
     "TNS_ADMIN" : "/tmp"
-  inputArtifacts:
-    - dbuser
-    - dbocid
+    "dbuser" : ${dbuser}
+    "dbocid" : ${dbocid}
   vaultVariables:
     db_password : ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaatsbrckqaejkfxwiozrz4ahlounvmix57r467vwyfjwobut7d7beq
 steps:
