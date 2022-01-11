@@ -28,7 +28,7 @@ steps:
     name: "unzipwallet"
     command: unzip adwwallet.zip -d /tmp
   - type: Command
-    timeoutInSeconds: 5
+    timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl"
-    command: /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < teste.sql
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < ${filename}
