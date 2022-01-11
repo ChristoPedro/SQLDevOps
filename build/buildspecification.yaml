@@ -5,7 +5,6 @@ shell: bash
 env:
   variables:
     "TNS_ADMIN" : "/tmp"
-    "dbocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
   exportedVariables:
     - dbuser
     - dbocid
