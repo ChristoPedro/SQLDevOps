@@ -26,9 +26,5 @@ steps:
     command: unzip adwwallet.zip -d /tmp
   - type: Command
     timeoutInSeconds: 5
-    name: "echo"
-    command: echo $TNS_ADMIN
-  - type: Command
-    timeoutInSeconds: 5
     name: "execute sqlcl"
-    command: /tmp/sqlcl/bin/sql -l -s admin/Oracle123456@aepx_high  < teste.sql
+    command: exit | /tmp/sqlcl/bin/sql -l -s admin/Oracle123456@aepx_high  < teste.sql
