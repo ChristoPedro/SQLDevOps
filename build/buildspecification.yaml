@@ -18,14 +18,6 @@ steps:
     command: unzip /tmp/sqlcl-21.4.0.348.1716.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
-    name: "alias sqlc"
-    command: alias sql=/tmp/sqlcl/bin/sql
-  - type: Command
-    timeoutInSeconds: 10
-    name: "list sqlc"
-    command: ls /tmp/sqlcl/bin
-  - type: Command
-    timeoutInSeconds: 10
     name: "GetWallet"
     command: oci db autonomous-database generate-wallet --autonomous-database-id $walletocid --file adwwallet.zip --password Oracle123456
   - type: Command
@@ -35,4 +27,4 @@ steps:
   - type: Command
     timeoutInSeconds: 5
     name: "execute sqlcl"
-    command: sql -l -s admin/Oracle123456@aepx_high  < teste.sql
+    command: /tmp/sqlcl/bin/sql -l -s admin/Oracle123456@aepx_high  < teste.sql
