@@ -4,8 +4,8 @@ timeoutInSeconds: 6000
 shell: bash
 env:
   variables:
-    - "TNS_ADMIN" : "/home/opc"
-    - "walletocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
+    "TNS_ADMIN" : "/home/opc"
+    "walletocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
 
 steps:
   - type: Command
