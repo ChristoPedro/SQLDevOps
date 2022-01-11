@@ -5,7 +5,7 @@ shell: bash
 env:
   variables:
     "TNS_ADMIN" : "/tmp"
-  exportedVariables:
+  inputArtifacts:
     - dbuser
     - dbocid
   vaultVariables:
