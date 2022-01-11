@@ -15,15 +15,15 @@ steps:
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
-    command: unzip /tmp/sqlcl-21.4.0.348.1716.zip
+    command: unzip /tmp/sqlcl-21.4.0.348.1716.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
     name: "alias sqlc"
-    command: alias sql=$HOME/sqlcl/bin/sql
+    command: alias sql=/tmp/sqlcl/bin/sql
   - type: Command
     timeoutInSeconds: 10
     name: "list sqlc"
-    command: ls $HOME/sqlcl/bin
+    command: ls /tmp/sqlcl/bin
   - type: Command
     timeoutInSeconds: 10
     name: "GetWallet"
