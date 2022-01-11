@@ -11,7 +11,7 @@ steps:
   - type: Command
     name: "download sqlc"
     timeoutInSeconds: 10
-    command: wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip -P /tmp
+    command: wget -q https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip -P /tmp
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
@@ -24,6 +24,10 @@ steps:
     timeoutInSeconds: 5
     name: "unzipwallet"
     command: unzip adwwallet.zip -d /tmp
+  - type: Command
+    timeoutInSeconds: 5
+    name: "echo"
+    command: echo $TNS_ADMIN
   - type: Command
     timeoutInSeconds: 5
     name: "execute sqlcl"
