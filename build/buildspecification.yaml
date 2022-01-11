@@ -1,0 +1,34 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+shell: bash
+env:
+  variables:
+    - "TNS_ADMIN" : "{$HOME}"
+    - "walletocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
+
+steps:
+  - type: Command
+    name: "Install sqlc"
+    timeoutInSeconds: 4000
+    command: yum install -y sqlcl
+  - type: Command
+    timeoutInSeconds: 400
+    name: "alias"
+    command: |
+      alias sql="${HOME}/sqlcl/bin/sql"
+  - type: Command
+    timeoutInSeconds: 400
+    name: "GetWallet"
+    command: |
+      oci db autonomous-database generate-wallet --autonomous-database-id $walletocid --file adwwallet.zip --password Oracle123456
+  - type: Command
+    timeoutInSeconds: 400
+    name: "unzipwallet"
+    command: |
+      unzip adwwallet.zip
+  - type: Command
+    timeoutInSeconds: 400
+    name: "execute sqlcl"
+    command: |
+      sql -l -s admin/Oracle123456@aepx_high  < teste.sql
