@@ -22,6 +22,10 @@ steps:
     command: oci db autonomous-database generate-wallet --autonomous-database-id $walletocid --file adwwallet.zip --password Oracle123456
   - type: Command
     timeoutInSeconds: 5
+    name: "unzipwallet"
+    command: unzip adwwallet.zip -d /tmp
+  - type: Command
+    timeoutInSeconds: 5
     shell: /bin/sh
     name: "execute sqlcl"
     command: /tmp/sqlcl/bin/sql -l -s admin/Oracle123456@aepx_high  < teste.sql
