@@ -14,11 +14,6 @@ steps:
     command: yum install -y java-1.8.0-openjdk sqlcl
   - type: Command
     timeoutInSeconds: 400
-    name: "alias"
-    command: |
-      alias sql="{$HOME}/sqlcl/bin/sql"
-  - type: Command
-    timeoutInSeconds: 400
     name: "GetWallet"
     command: |
       oci db autonomous-database generate-wallet --autonomous-database-id $walletocid --file adwwallet.zip --password Oracle123456
