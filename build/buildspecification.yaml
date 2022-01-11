@@ -4,7 +4,7 @@ timeoutInSeconds: 6000
 shell: bash
 env:
   variables:
-    "TNS_ADMIN" : "/home/opc"
+    "TNS_ADMIN" : "{$HOME}"
     "walletocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
 
 steps:
@@ -16,7 +16,7 @@ steps:
     timeoutInSeconds: 400
     name: "alias"
     command: |
-      alias sql="/home/opc/sqlcl/bin/sql"
+      alias sql="{$HOME}/sqlcl/bin/sql"
   - type: Command
     timeoutInSeconds: 400
     name: "GetWallet"
