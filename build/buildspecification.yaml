@@ -4,7 +4,7 @@ timeoutInSeconds: 6000
 shell: bash
 env:
   variables:
-    "TNS_ADMIN" : "{$HOME}"
+    "TNS_ADMIN" : "/tmp"
     "walletocid" : "ocid1.autonomousdatabase.oc1.sa-saopaulo-1.antxeljrtsbrckqajpv4tee3rdqlgtuwy7dzuja3qe2hpvq7l3dbb5abnvua"
 
 steps:
@@ -23,7 +23,7 @@ steps:
   - type: Command
     timeoutInSeconds: 5
     name: "unzipwallet"
-    command: unzip adwwallet.zip
+    command: unzip adwwallet.zip -d /tmp
   - type: Command
     timeoutInSeconds: 5
     name: "execute sqlcl"
