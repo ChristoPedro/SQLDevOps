@@ -5,8 +5,6 @@ shell: bash
 env:
   variables:
     "TNS_ADMIN" : "/tmp"
-    "dbuser" : ${dbuser}
-    "dbocid" : ${dbocid}
   vaultVariables:
     db_password : ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaatsbrckqaejkfxwiozrz4ahlounvmix57r467vwyfjwobut7d7beq
 steps:
@@ -14,12 +12,7 @@ steps:
     name: "echo1"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: echo $dbocid
-  - type: Command
-    name: "echo2"
-    timeoutInSeconds: 10
-    shell: /bin/sh
-    command: echo $db_password
+    command: echo ${dbocid}
   - type: Command
     name: "download sqlc"
     timeoutInSeconds: 10
@@ -34,7 +27,7 @@ steps:
     timeoutInSeconds: 10
     shell: /bin/sh
     name: "GetWallet"
-    command: oci db autonomous-database generate-wallet --autonomous-database-id $dbocid --file adwwallet.zip --password Oracle123456
+    command: oci db autonomous-database generate-wallet --autonomous-database-id ${dbocid} --file adwwallet.zip --password Oracle123456
   - type: Command
     timeoutInSeconds: 5
     name: "unzipwallet"
@@ -43,4 +36,4 @@ steps:
     timeoutInSeconds: 5
     shell: /bin/sh
     name: "execute sqlcl"
-    command: /tmp/sqlcl/bin/sql -l -s $dbuser/$db_password@string  < teste.sql
+    command: /tmp/sqlcl/bin/sql -l -s ${dbuser}/$db_password@string  < teste.sql
