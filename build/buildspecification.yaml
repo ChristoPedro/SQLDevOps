@@ -9,21 +9,29 @@ env:
 
 steps:
   - type: Command
-    name: "Install sqlc"
-    timeoutInSeconds: 4000
-    command: yum install -y java-1.8.0-openjdk sqlcl
+    name: "download sqlc"
+    timeoutInSeconds: 10
+    command: wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip -P /tmp
   - type: Command
-    timeoutInSeconds: 400
+    name: "unzip sqlc"
+    timeoutInSeconds: 10
+    command: unzip /tmp/sqlcl-21.4.0.348.1716.zip
+  - type: Command
+    timeoutInSeconds: 10
+    name: "alias sqlc"
+    command: alias sql=$HOME/sqlcl/bin/sql
+  - type: Command
+    timeoutInSeconds: 10
     name: "GetWallet"
     command: |
       oci db autonomous-database generate-wallet --autonomous-database-id $walletocid --file adwwallet.zip --password Oracle123456
   - type: Command
-    timeoutInSeconds: 400
+    timeoutInSeconds: 5
     name: "unzipwallet"
     command: |
       unzip adwwallet.zip
   - type: Command
-    timeoutInSeconds: 400
+    timeoutInSeconds: 5
     name: "execute sqlcl"
     command: |
       sql -l -s admin/Oracle123456@aepx_high  < teste.sql
