@@ -12,15 +12,28 @@ env:
     db_password : ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaatsbrckqaejkfxwiozrz4ahlounvmix57r467vwyfjwobut7d7beq
 steps:
   - type: Command
+    name: "echo1"
+    timeoutInSeconds: 10
+    shell: /bin/sh
+    command: echo $dbocid
+  - type: Command
+    name: "echo2"
+    timeoutInSeconds: 10
+    shell: /bin/sh
+    command: echo $db_password
+  - type: Command
     name: "download sqlc"
     timeoutInSeconds: 10
+    shell: /bin/sh
     command: wget -q https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip -P /tmp
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
+    shell: /bin/sh
     command: unzip /tmp/sqlcl-21.4.0.348.1716.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
+    shell: /bin/sh
     name: "GetWallet"
     command: oci db autonomous-database generate-wallet --autonomous-database-id $dbocid --file adwwallet.zip --password Oracle123456
   - type: Command
