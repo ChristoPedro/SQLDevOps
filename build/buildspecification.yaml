@@ -30,10 +30,5 @@ steps:
   - type: Command
     timeoutInSeconds: 5
     shell: /bin/sh
-    name: "echo"
-    command: echo ${dbuser}/$dbpass@${stringdb}
-  - type: Command
-    timeoutInSeconds: 5
-    shell: /bin/sh
     name: "execute sqlcl"
     command: /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < teste.sql
