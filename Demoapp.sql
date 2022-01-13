@@ -23,7 +23,7 @@ wwv_flow_api.import_begin (
 end;
 /
  
-prompt APPLICATION 101 - Campos - aplicacao
+prompt APPLICATION 101 - Campos - aplicacao1
 --
 -- Application Export:
 --   Application:     101
