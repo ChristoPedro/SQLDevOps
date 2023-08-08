@@ -6,7 +6,16 @@ env:
   variables:
     "TNS_ADMIN" : "/tmp"
   vaultVariables:
-    dbpass : ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaatsbrckqaejkfxwiozrz4ahlounvmix57r467vwyfjwobut7d7beq
+    dbpass : ${vault_OCID}
+inputArtifacts:
+  - name: export_app
+    type: COMMAND_SPECIFICATION
+    artifactId: ${export_app_id}
+  - name: sqlc.zip
+    type: URL
+    url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
+    location: /tmp
+    
 steps:
   - type: Command
     name: "download sqlc"
@@ -17,7 +26,7 @@ steps:
     name: "unzip sqlc"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: unzip /tmp/sqlcl-21.4.0.348.1716.zip -d /tmp
+    command: unzip /tmp/sqlcl.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
     shell: /bin/sh
@@ -31,4 +40,4 @@ steps:
     timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl"
-    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < ${filename}
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < ${export_app}
