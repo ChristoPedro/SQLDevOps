@@ -9,7 +9,7 @@ env:
     dbpass : ${vault_OCID}
 inputArtifacts:
   - name: export_app
-    type: GENERIC_ARTIFACT
+    type: STAGE_ARTIFACT
     artifactId: ${export_app_id}
     location: ${OCI_PRIMARY_SOURCE_DIR}/export.sql
   - name: sqlc
@@ -22,7 +22,7 @@ steps:
     name: "unzip sqlc"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: unzip sqlcl.zip
+    command: unzip sqlcl.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
     shell: /bin/sh
@@ -36,4 +36,4 @@ steps:
     timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl"
-    command: exit | sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < export.sql
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < export.sql
