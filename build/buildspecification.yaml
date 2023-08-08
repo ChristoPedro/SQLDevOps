@@ -14,14 +14,9 @@ inputArtifacts:
   - name: sqlc
     type: URL
     url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
-    location: ${TNS_ADMIN}
+    location: /tmp
     
 steps:
-  - type: Command
-    name: "download sqlc"
-    timeoutInSeconds: 10
-    shell: /bin/sh
-    command: wget -q https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip -P /tmp
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
