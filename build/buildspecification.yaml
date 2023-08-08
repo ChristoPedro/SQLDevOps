@@ -11,7 +11,7 @@ inputArtifacts:
   - name: export_app
     type: GENERIC_ARTIFACT
     artifactId: ${export_app_id}
-  - name: sqlc.zip
+  - name: sqlc
     type: URL
     url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
     location: ${TNS_ADMIN}
@@ -26,7 +26,7 @@ steps:
     name: "unzip sqlc"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: unzip /tmp/sqlcl.zip -d /tmp
+    command: unzip /tmp/{$sqlcl} -d /tmp
   - type: Command
     timeoutInSeconds: 10
     shell: /bin/sh
