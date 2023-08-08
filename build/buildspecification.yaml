@@ -32,4 +32,4 @@ steps:
     timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl generate controlfile"
-    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb} < /build/extract.sql
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb} < build/extract.sql
