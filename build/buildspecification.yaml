@@ -9,7 +9,7 @@ env:
     dbpass : ${vault_OCID}
 inputArtifacts:
   - name: export_app
-    type: COMMAND_SPECIFICATION
+    type: GENERIC_ARTIFACT
     artifactId: ${export_app_id}
   - name: sqlc.zip
     type: URL
