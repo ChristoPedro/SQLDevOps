@@ -9,9 +9,9 @@ env:
     dbpass : ${vault_OCID}
 inputArtifacts:
   - name: export_app
-    type: STAGE_ARTIFACT
-    artifactId: ${export_app_id}
-    location: ${OCI_PRIMARY_SOURCE_DIR}/export.sql
+    type: GENERIC_ARTIFACT
+    artifactId: ocid1.devopsdeployartifact.oc1.sa-saopaulo-1.amaaaaaatsbrckqa23elgcv4u4p55fcgrqmi6y5pqoqef5uolsrzojhkoxma
+    location: export.sql
   - name: sqlc
     type: URL
     url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
