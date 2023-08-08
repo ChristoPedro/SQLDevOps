@@ -8,7 +8,7 @@ env:
   vaultVariables:
     dbpass : ${vault_OCID}
 inputArtifacts:
-  - name: export_app
+  - name: exportapp
     type: GENERIC_ARTIFACT
     artifactId: ${export_app_id}
     location: export.sql
