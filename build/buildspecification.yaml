@@ -35,5 +35,10 @@ steps:
   - type: Command
     timeoutInSeconds: 60
     shell: /bin/sh
-    name: "execute sqlcl"
-    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < export.sql
+    name: "execute sqlcl generate controlfile"
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  lb gencontrolfile
+  - type: Command
+    timeoutInSeconds: 60
+    shell: /bin/sh
+    name: "execute sqlcl generate appfile"
+    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb} Lb genobject -type apex -applicationid ${appid} -skipExportDate -expOriginalIds
