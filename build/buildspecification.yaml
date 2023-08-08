@@ -10,7 +10,7 @@ env:
 inputArtifacts:
   - name: export_app
     type: GENERIC_ARTIFACT
-    artifactId: ocid1.devopsdeployartifact.oc1.sa-saopaulo-1.amaaaaaatsbrckqa23elgcv4u4p55fcgrqmi6y5pqoqef5uolsrzojhkoxma
+    artifactId: ${export_app_id}
     location: export.sql
   - name: sqlc
     type: URL
