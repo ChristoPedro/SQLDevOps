@@ -14,14 +14,14 @@ inputArtifacts:
   - name: sqlc
     type: URL
     url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
-    location: /tmp/sqlcl.zip
+    location: ${OCI_PRIMARY_SOURCE_DIR}/sqlcl.zip
     
 steps:
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: unzip /tmp/sqlcl.zip -d /tmp
+    command: unzip ${OCI_PRIMARY_SOURCE_DIR}/sqlcl.zip -d /tmp
   - type: Command
     timeoutInSeconds: 10
     shell: /bin/sh
@@ -35,4 +35,4 @@ steps:
     timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl"
-    command: exit | /tmp/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < ${export_app}
+    command: exit | ${OCI_PRIMARY_SOURCE_DIR}/sqlcl/bin/sql -l -s ${dbuser}/$dbpass@${stringdb}  < ${export_app}
