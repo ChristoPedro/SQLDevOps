@@ -34,9 +34,9 @@ steps:
     name: "execute sqlcl generate controlfile"
     command: exit | /tmp/sqlcl/bin/sql ${dbuser}/${dbpass}@${stringdb} < build/extract.sql
 outputArtifacts:
-  - name: controller.xml
+  - name: controller
     type: BINARY
     location: controller.xml
-  - name: app.xml
+  - name: app
     type: BINARY
     location: f${appid}.xml
