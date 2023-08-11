@@ -23,7 +23,7 @@ steps:
     shell: /bin/sh
     command: |
       cd ${OCI_WORKSPACE_DIR}/apexapp
-      git add commit -m "teste"
+      git commit -m "teste"
   - type: Command
     name: "Git push"
     timeoutInSeconds: 10
