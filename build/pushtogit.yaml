@@ -4,7 +4,7 @@ timeoutInSeconds: 600
 shell: bash
 env:
   variables:
-    "GIT_DIR" : "/apexapp"
+    "GIT_DIR" : "${OCI_WORKSPACE_DIR}/apexapp"
 inputArtifacts:
   - name: controller
     type: STAGE_ARTIFACT
