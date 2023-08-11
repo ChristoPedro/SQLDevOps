@@ -21,7 +21,7 @@ steps:
     shell: /bin/sh
     command: | 
       cd ${OCI_WORKSPACE_DIR}/apexapp
-      git remote add origin https://${githubPAT}@${Origin}
+      git remote set-url origin https://${githubPAT}@${Origin}
       git add -A
   - type: Command
     name: "Git commit"
