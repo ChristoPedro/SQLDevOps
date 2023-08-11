@@ -4,7 +4,7 @@ timeoutInSeconds: 600
 shell: bash
 env:
   variables:
-    "GIT_DIR" : "${OCI_WORKSPACE_DIR}/apexapp"
+    "GIT_DIR" : ${OCI_WORKSPACE_DIR}/apexapp
 inputArtifacts:
   - name: controller
     type: STAGE_ARTIFACT
@@ -17,14 +17,20 @@ steps:
     name: "Git Add"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: cd ${GIT_DIR} && git add -A
+    command: | 
+      cd ${GIT_DIR}
+      git add -A
   - type: Command
     name: "Git commit"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: cd ${GIT_DIR} && git add commit -m "teste"
+    command: |
+      cd ${GIT_DIR} 
+      git add commit -m "teste"
   - type: Command
     name: "Git push"
     timeoutInSeconds: 10
     shell: /bin/sh
-    command: cd ${GIT_DIR} && git push origin main
+    command: |
+      cd ${GIT_DIR} 
+      git push origin main
