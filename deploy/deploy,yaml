@@ -1,0 +1,50 @@
+version: 0.1
+component: command
+timeoutInSeconds: 10000
+shell: bash
+failImmediatelyOnError: true
+env:
+  variables:
+    "TNS_ADMIN" : "/tmp"
+  vaultVariables:
+    dbpass : ${vault_OCID}
+ 
+inputArtifacts:
+  - name: app
+    type: GENERIC_ARTIFACT
+    registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
+    path: apex_app,xml
+    version: 1
+    location: ${OCI_PRIMARY_SOURCE_DIR}/f${appid}.xml
+  - name: controller
+    type: GENERIC_ARTIFACT
+    registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
+    path: controller.xml
+    version: 1
+    location: ${OCI_PRIMARY_SOURCE_DIR}/controller.xml
+  - name: update_security
+    type: GENERIC_ARTIFACT
+    artifactId: "ocid1.genericartifact.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqaav7hon762hzci3avozexyyb7d5oj4yx2ygumbquzf6bq"
+    location: ${OCI_PRIMARY_SOURCE_DIR}/updatesec.sql
+  
+
+steps:
+  - type: Command
+    name: update controller
+    shell: shellType
+    timeoutInSeconds: 5
+    failImmediatelyOnError: true
+    command: sed -i 's+{filename.xml}+f${appid}.xml+g' controller.xml
+  - type: Command
+    timeoutInSeconds: 10
+    shell: /bin/sh
+    name: "GetWallet"
+    command: oci db autonomous-database generate-wallet --autonomous-database-id ${dbocid} --file adwwallet.zip --password Oracle123456
+  - type: Command
+    timeoutInSeconds: 5
+    name: "unzipwallet"
+    command: unzip adwwallet.zip -d /tmp
+  - type: Command
+    timeoutInSeconds: 5
+    name: "update security"
+    command: exit | sql ${dbuser}/${dbpass}@${stringdb} < updatesec.sql

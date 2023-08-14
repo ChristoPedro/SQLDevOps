@@ -7,6 +7,8 @@ env:
     "TNS_ADMIN" : "/tmp"
   vaultVariables:
     dbpass : ${vault_OCID}
+  exportedVariables:
+    - BUILDRUN_HASH
 inputArtifacts:
   - name: sqlc
     type: URL
@@ -14,6 +16,12 @@ inputArtifacts:
     location: sqlcl.zip
     
 steps:
+  - type: Command
+    name: "Define a version for artifact"
+    timeoutInSeconds: 10
+    command: |
+      export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      echo "BUILDRUN_HASH: " $BUILDRUN_HASH
   - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
