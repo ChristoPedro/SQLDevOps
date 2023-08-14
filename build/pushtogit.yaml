@@ -30,7 +30,7 @@ steps:
     shell: /bin/sh
     command: |
       cd ${OCI_WORKSPACE_DIR}/apexapp
-      git commit -m "teste"
+      git commit -m ${$BUILDRUN_HASH}
   - type: Command
     name: "Git push"
     timeoutInSeconds: 10
