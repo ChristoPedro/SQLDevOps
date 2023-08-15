@@ -8,9 +8,9 @@ env:
   vaultVariables:
     githubPAT : ocid1.vaultsecret.oc1.sa-saopaulo-1.amaaaaaatsbrckqabebib6hnm76fgsjkcadgj4heggcstyq45zpewkuuosla
 inputArtifacts:
-  - name: controller
+  - name: apex_install
     type: STAGE_ARTIFACT
-    location: ${OCI_WORKSPACE_DIR}/apexapp/controller.xml
+    location: ${OCI_WORKSPACE_DIR}/apexapp/apex_install.xml
   - name: app
     type: STAGE_ARTIFACT
     location: ${OCI_WORKSPACE_DIR}/apexapp/f${appid}.xml

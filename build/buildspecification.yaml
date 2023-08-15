@@ -12,7 +12,7 @@ env:
 inputArtifacts:
   - name: sqlc
     type: URL
-    url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-21.4.0.348.1716.zip
+    url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-23.2.0.178.1027.zip
     location: sqlcl.zip
     
 steps:
@@ -34,17 +34,23 @@ steps:
     command: oci db autonomous-database generate-wallet --autonomous-database-id ${dbocid} --file adwwallet.zip --password Oracle123456
   - type: Command
     timeoutInSeconds: 5
-    name: "unzipwallet"
-    command: unzip adwwallet.zip -d /tmp
+    name: "generate sql file"
+    command: |
+      echo "
+      set cloudconfig ${PWD}/adwwallet.zip;
+      conn ${dbuser}/${dbpass}@${stringdb}
+      lb generate-control-file -chf apex_install.xml
+      lb generate-apex-object -applicationid ${appid} -skipExportDate
+      " > apex.sql
   - type: Command
     timeoutInSeconds: 60
     shell: /bin/sh
     name: "execute sqlcl generate controlfile"
-    command: exit | /tmp/sqlcl/bin/sql ${dbuser}/${dbpass}@${stringdb} < build/extract.sql
+    command: /tmp/sqlcl/bin/sql /nolog < apex.sql
 outputArtifacts:
-  - name: controller
+  - name: apex_install
     type: BINARY
-    location: controller.xml
+    location: apex_install.xml
   - name: app
     type: BINARY
     location: f${appid}.xml
