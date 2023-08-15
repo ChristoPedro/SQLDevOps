@@ -14,6 +14,10 @@ inputArtifacts:
     type: URL
     url: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-23.2.0.178.1027.zip
     location: sqlcl.zip
+  - name: java17
+    type: URL
+    url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+    location: jdk.rpm
     
 steps:
   - type: Command
@@ -27,6 +31,11 @@ steps:
     timeoutInSeconds: 10
     shell: /bin/sh
     command: unzip sqlcl.zip -d /tmp
+  - type: Command
+    name: "install java"
+    timeoutInSeconds: 20
+    shell: /bin/sh
+    command: rpm -ivh jdk.rpm
   - type: Command
     timeoutInSeconds: 10
     shell: /bin/sh
