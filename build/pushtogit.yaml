@@ -13,7 +13,7 @@ inputArtifacts:
     location: ${OCI_WORKSPACE_DIR}/apexapp/apex_install.xml
   - name: app
     type: STAGE_ARTIFACT
-    location: ${OCI_WORKSPACE_DIR}/apexapp/f${appid}.xml
+    location: ${OCI_WORKSPACE_DIR}/apexapp/f${appid}.sql
 steps:
   - type: Command
     name: "Git Add"

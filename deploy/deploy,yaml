@@ -11,9 +11,9 @@ inputArtifacts:
   - name: app
     type: GENERIC_ARTIFACT
     registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
-    path: apex_app.xml
+    path: apex_app.sql
     version: ${BUILDRUN_HASH}
-    location: ${OCI_PRIMARY_SOURCE_DIR}/f${appid}.xml 
+    location: ${OCI_PRIMARY_SOURCE_DIR}/f${appid}.sql 
   - name: apex_install
     type: GENERIC_ARTIFACT
     registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
