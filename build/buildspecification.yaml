@@ -27,6 +27,11 @@ steps:
       export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
       echo "BUILDRUN_HASH: " $BUILDRUN_HASH
   - type: Command
+    timeoutInSeconds: 30
+    shell: /bin/sh
+    name: "GetWallet"
+    command: oci db autonomous-database generate-wallet --autonomous-database-id ${dbocid} --file adwwallet.zip --password Oracle123456
+  - type: Command
     name: "unzip sqlc"
     timeoutInSeconds: 10
     shell: /bin/sh
@@ -36,11 +41,6 @@ steps:
     timeoutInSeconds: 20
     shell: /bin/sh
     command: rpm -ivh jdk.rpm
-  - type: Command
-    timeoutInSeconds: 10
-    shell: /bin/sh
-    name: "GetWallet"
-    command: oci db autonomous-database generate-wallet --autonomous-database-id ${dbocid} --file adwwallet.zip --password Oracle123456
   - type: Command
     timeoutInSeconds: 5
     name: "generate sql file"
