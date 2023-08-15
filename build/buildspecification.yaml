@@ -48,6 +48,7 @@ steps:
       echo "
       set cloudconfig ${PWD}/adwwallet.zip;
       conn ${dbuser}/${dbpass}@${stringdb}
+      lb generate-control-file -chf controller.xml
       lb generate-apex-object -applicationid ${appid} -skipExportDate
       " > apex.sql
   - type: Command
@@ -62,3 +63,6 @@ outputArtifacts:
   - name: app
     type: BINARY
     location: f${appid}.sql
+  - name: controller
+    type: BINARY
+    location: controller.xml

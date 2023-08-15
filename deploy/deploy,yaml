@@ -19,7 +19,13 @@ inputArtifacts:
     registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
     path: apex_install.xml
     version: ${BUILDRUN_HASH}
-    location: ${OCI_PRIMARY_SOURCE_DIR}/apex_install.xml  
+    location: ${OCI_PRIMARY_SOURCE_DIR}/apex_install.xml
+  - name: controller
+    type: GENERIC_ARTIFACT
+    registryId: ocid1.artifactrepository.oc1.sa-saopaulo-1.0.amaaaaaatsbrckqa6fmjktavhvjamu3wozh6ey2zkaqjzx3ehaosomnwnpza
+    path: controller.xml
+    version: ${BUILDRUN_HASH}
+    location: ${OCI_PRIMARY_SOURCE_DIR}/controller.xml  
 
 steps:
   - type: Command
@@ -27,6 +33,11 @@ steps:
     shell: /bin/sh
     name: "GetWallet"
     command: oci db autonomous-database generate-wallet --autonomous-database-id ${deploy_dbocid} --file adwwallet.zip --password Oracle123456
+  - type: Command
+    imeoutInSeconds: 10
+    shell: /bin/sh
+    name: "Update Controller"
+    command: sed -i "s+{filename.xml}+apex_install.xml+g" controller.xml
   - type: Command
     timeoutInSeconds: 30
     shell: /bin/sh
